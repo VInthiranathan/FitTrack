@@ -5,8 +5,172 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitTrack.View"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="450" Width="800">
+        Title="Register" Height="450" Width="800">
     <Grid>
-        
+        <Border Width="600"
+            Height="400"
+            Background="White"
+            CornerRadius="6">
+
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    Direction="-90" 
+                    RenderingBias="Quality" 
+                    ShadowDepth="2" 
+                    Color="LightGray"
+                    />
+            </Border.Effect>
+
+            <StackPanel Orientation="Vertical" Margin="20">
+
+                <TextBlock
+                    Text="Sign up" 
+                    FontSize="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    FontWeight="Bold"
+                    Padding="10"
+                    />
+
+                <Grid x:Name="innerGrid" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock
+                        Text="First Name" 
+                        Grid.Row="0"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBlock
+                        Text="Last Name" 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBox
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="Hassan"
+                        />
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="Hussin"
+                        />
+                    <TextBlock
+                        Text="Username" 
+                        Grid.Row="2"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBlock
+                        Text="E-Mail" 
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBox
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="admin"
+                        />
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="admin@email.com"
+                        />
+
+                    <TextBlock
+                        Text="Password" 
+                        Grid.Row="4"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBlock
+                        Text="Repeat password" 
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"
+                        />
+
+                    <PasswordBox
+                        Grid.Row="5"
+                        Password="password"
+                        Padding="0,5"                           
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        />
+
+                    <PasswordBox
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Password="password"
+                        Padding="0,5"                           
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBlock
+                        Text="Country" 
+                        Grid.Row="6"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"
+                        />
+                    <ComboBox
+                        x:Name="CountryCombo"
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Margin="0,5,0,5"
+                        Width="255"
+                        HorizontalAlignment="Left"
+                        />
+
+                </Grid>
+                
+
+                <Button
+                    x:Name="SignupBtn" 
+                    Content="Sign up" 
+                    Background="Crimson"
+                    Foreground="LightGray"
+                    Margin="0,10"
+                    Height="35"
+                    Width="250"
+                    />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

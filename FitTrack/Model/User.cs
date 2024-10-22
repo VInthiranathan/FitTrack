@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace FitTrack.Model
 {
-    class User
+    public class User : Person
     {
+        public string Country { get; set; }
+        public string SecurityQ { get; set; }
+        public string SecurityA {  get; set; }
+        public User(string username, string password) : base(username, password)
+        {
+
+        }
+        public void SecurityCheck(string securityQ, string securityA)
+        {
+            SecurityQ = securityQ;
+            SecurityA = securityA;
+        }
+        public override void SignIn()
+        {
+            
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitTrack.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace FitTrack.View
         public RegisterWindow()
         {
             InitializeComponent();
+
+            // lägger till värden från Enums till Combobox
+            CountryCombo.ItemsSource = Enum.GetValues(typeof(Countries));
+
+
         }
     }
+
 }
