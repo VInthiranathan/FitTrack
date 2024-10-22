@@ -28,5 +28,13 @@ namespace FitTrack
             registerWindow.Show();
             this.Close();
         }
+
+        private void SigninBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homeWindow = new HomeWindow();
+            homeWindow.Show();
+            this.Close();
+
+        }
     }
 }

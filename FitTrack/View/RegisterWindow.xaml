@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:FitTrack.View"
         mc:Ignorable="d"
         Title="Register" Height="450" Width="800">
-    <Grid>
-        <Border Width="600"
+    <Grid Background="LightGray">
+        <Border
+            Width="600"
             Height="400"
             Background="White"
-            CornerRadius="6">
+            CornerRadius="20">
 
             <Border.Effect>
                 <DropShadowEffect
@@ -49,13 +50,13 @@
                     </Grid.ColumnDefinitions>
                     
                     <TextBlock
-                        Text="First Name" 
+                        Text="First Name"
                         Grid.Row="0"
                         Margin="0,15"
                         HorizontalAlignment="Left"
                         />
                     <TextBlock
-                        Text="Last Name" 
+                        Text="Last Name"
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="0,15"
@@ -80,13 +81,13 @@
                         Text="Hussin"
                         />
                     <TextBlock
-                        Text="Username" 
+                        Text="Username"
                         Grid.Row="2"
                         Margin="0,15"
                         HorizontalAlignment="Left"
                         />
                     <TextBlock
-                        Text="E-Mail" 
+                        Text="E-Mail"
                         Grid.Row="2"
                         Grid.Column="1"
                         Margin="0,15"
@@ -112,13 +113,13 @@
                         />
 
                     <TextBlock
-                        Text="Password" 
+                        Text="Password"
                         Grid.Row="4"
                         Margin="0,15"
                         HorizontalAlignment="Left"
                         />
                     <TextBlock
-                        Text="Repeat password" 
+                        Text="Repeat password"
                         Grid.Row="4"
                         Grid.Column="1"
                         Margin="0,15"
@@ -128,7 +129,7 @@
                     <PasswordBox
                         Grid.Row="5"
                         Password="password"
-                        Padding="0,5"                           
+                        Padding="0,5"
                         Width="255"
                         BorderThickness="0,0,0,1"
                         HorizontalAlignment="Left"
@@ -138,13 +139,13 @@
                         Grid.Row="5"
                         Grid.Column="1"
                         Password="password"
-                        Padding="0,5"                           
+                        Padding="0,5"
                         Width="255"
                         BorderThickness="0,0,0,1"
                         HorizontalAlignment="Left"
                         />
                     <TextBlock
-                        Text="Country" 
+                        Text="Country"
                         Grid.Row="6"
                         Margin="0,15"
                         HorizontalAlignment="Left"
