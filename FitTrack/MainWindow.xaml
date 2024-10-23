@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FitTrack"
+        xmlns:local="clr-namespace:FitTrack" xmlns:viewmodel="clr-namespace:FitTrack.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Sign in" Height="450" Width="800">
+    
     <Grid Background="LightGray" >
 
         <Border Width="300"
@@ -56,7 +57,7 @@
                         Width="255"
                         BorderThickness="0,0,0,1"
                         HorizontalAlignment="Left"
-                        Text="admin"
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                         />
 
                     <TextBlock
@@ -66,9 +67,9 @@
                         HorizontalAlignment="Left"
                         />
 
-                    <PasswordBox
+                    <TextBox
                         Grid.Row="3"
-                        Password="password"
+                        Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                         Padding="0,5"
                         Width="255"
                         BorderThickness="0,0,0,1"
@@ -89,8 +90,10 @@
                     Margin="0,10"
                     Height="35"
                     Width="250"
-                    Click="SigninBtn_Click"
+                    Command="{Binding LoginCommand}"
                     />
+                <!-- ="SigninBtn_Click" -->
+
 
                 <TextBlock
                     Text="Sign Up"

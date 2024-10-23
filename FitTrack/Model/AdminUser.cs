@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace FitTrack.Model
 {
-    class AdminUser
+    public class AdminUser : Person
     {
+        public AdminUser(string username, string password) : base(username, password)
+        {
+
+        }
+
+        public override void SignIn()
+        {
+            
+        }
     }
 }

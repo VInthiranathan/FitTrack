@@ -15,7 +15,34 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+        <Border Background="Crimson" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="C:\Users\vinth\Desktop\OOP_Grund\FitTrack\FitTrack\Images\Profile_png.png"/>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="Hassan Hussin"
+                        Margin="0,5"
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="LightGray"
+                        />
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="Administrator"
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="LightGray"
+                        />
+                </StackPanel>
+            </Grid>
+        </Border>
         
     </Grid>
 

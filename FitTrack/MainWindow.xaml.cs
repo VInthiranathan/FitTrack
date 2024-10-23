@@ -1,4 +1,6 @@
-﻿using FitTrack.View;
+﻿using FitTrack.Model;
+using FitTrack.View;
+using FitTrack.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +22,14 @@ namespace FitTrack
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel viewModel = new MainWindowViewModel();
+            // Anropas när RequestClose triggas
+            viewModel.RequestClose += () =>
+            {
+                this.Close();  // Stänger fönster
+            };
+
+            DataContext = viewModel;
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
@@ -27,14 +37,6 @@ namespace FitTrack
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.Show();
             this.Close();
-        }
-
-        private void SigninBtn_Click(object sender, RoutedEventArgs e)
-        {
-            HomeWindow homeWindow = new HomeWindow();
-            homeWindow.Show();
-            this.Close();
-
         }
     }
 }

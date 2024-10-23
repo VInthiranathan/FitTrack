@@ -8,12 +8,20 @@ namespace FitTrack.Model
 {
     public class User : Person
     {
+        public string EMail { get; set; }
         public string Country { get; set; }
         public string SecurityQ { get; set; }
         public string SecurityA {  get; set; }
         public User(string username, string password) : base(username, password)
         {
 
+        }
+        public User(string username, string password, string email, string country, string securityQ, string securityA) : base(username, password)
+        {
+            EMail = email;
+            Country = country;
+            SecurityQ = securityQ;
+            SecurityA = securityA;
         }
         public void SecurityCheck(string securityQ, string securityA)
         {

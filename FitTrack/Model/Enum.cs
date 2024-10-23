@@ -10,7 +10,19 @@ namespace FitTrack.MVVM
     {
         Sweden,
         Norway,
+        Finland,
         Denmark,
-        Finland
+        Estonia,
+        Latvia,
+        Lithuania,
+        Germany,
+        Poland,
+        Russia,
+        Iceland,
+        Greenland,
+        FaroeIslands,
+        ÅlandIslands,
+        China,
+        Netherlands
     }
 }

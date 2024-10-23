@@ -9,8 +9,8 @@ namespace FitTrack.Model
 {
     public abstract class Person
     {
-        string Username { get; set; }
-        string Password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         public Person(string username, string password)
         {
