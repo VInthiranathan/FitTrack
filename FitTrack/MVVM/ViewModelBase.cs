@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using FitTrack.ViewModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MVVMgenomgang.MVVM

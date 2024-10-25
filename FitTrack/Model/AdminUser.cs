@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FitTrack.Model
 {
@@ -15,7 +16,7 @@ namespace FitTrack.Model
 
         public override void SignIn()
         {
-            
+            MessageBox.Show("You are a Admin user", "User");
         }
     }
 }

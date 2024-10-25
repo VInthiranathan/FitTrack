@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using MVVMgenomgang.MVVM;
 using FitTrack.View;
+using System.Collections.ObjectModel;
 
 namespace FitTrack.ViewModel
 {
@@ -16,7 +17,7 @@ namespace FitTrack.ViewModel
     {
         private string username;
         private string password;
-        private Accountmanager accountmanager;
+        private readonly Accountmanager accountmanager;
 
         public string Username
         {
@@ -39,12 +40,13 @@ namespace FitTrack.ViewModel
         }
 
         public ICommand LoginCommand { get; }
+        public event Action RequestClose; // En händelse/singal
+
         public MainWindowViewModel()
         {
             accountmanager = new Accountmanager();
             LoginCommand = new RelayCommand(ExecuteLogin, CanExecuteLogin);
         }
-        public event Action RequestClose; // En händelse/singal
         private void ExecuteLogin(object parameter)
         {
             if (accountmanager.ValidateLogin(Username, Password))

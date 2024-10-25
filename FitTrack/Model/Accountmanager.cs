@@ -1,15 +1,15 @@
 ﻿using FitTrack.Model;
+using System.Collections.ObjectModel;
 
 namespace FitTrack.ViewModel
 {
     internal class Accountmanager
     {
-        private List<Person> users = new List<Person>
+        private static List<Person> users = new List<Person>
         {
-            new User("User1", "password1"),
+            new User("user1", "password1"),
             new AdminUser("admin", "password1")
         };
-
 
         // Kontrollerar användare för inloggning
         public bool ValidateLogin(string username, string password)
@@ -21,11 +21,17 @@ namespace FitTrack.ViewModel
         {
             if (users.Any(u => u.Username == username))
             {
-                return false; // Användarnamnet finns redan
+                return false; // Användarnamnet är upptaget
             }
-
-            users.Add(new User(username, password));
+            Person user = new User(username, password);
+            users.Add(user);
             return true; // Registrering lyckades
+        }
+
+        // Returnera alla användare
+        public static List<Person> GetAllUsers()
+        {
+            return users;
         }
     }
 }

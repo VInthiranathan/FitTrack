@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FitTrack.View"
+        xmlns:local="clr-namespace:FitTrack.View" xmlns:viewmodel="clr-namespace:FitTrack.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:RegisterViewModel}"
         mc:Ignorable="d"
         Title="Register" Height="450" Width="800">
-    <Grid Background="LightGray">
+    <Grid Background="DimGray">
         <Border
             Width="600"
             Height="400"
-            Background="White"
+            Background="LightGray"
             CornerRadius="20">
 
             <Border.Effect>

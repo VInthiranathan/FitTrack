@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FitTrack.View"
         mc:Ignorable="d"
         Title="HomeWindow" Height="450" Width="800">
-    <Grid Background="LightGray">
+    <Grid Background="DimGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition/>
@@ -21,8 +21,9 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <!--lägg in path till (Profile_png) -->
                 <Image Source="C:\Users\vinth\Desktop\OOP_Grund\FitTrack\FitTrack\Images\Profile_png.png"/>
-
+                
                 <StackPanel Grid.Column="1">
                     <TextBlock
                         Grid.Column="1"
@@ -43,7 +44,44 @@
                 </StackPanel>
             </Grid>
         </Border>
-        
+        <StackPanel Grid.Row="1">
+            <Button
+                Height="20"
+                Content="Menu"
+                Foreground="Crimson"
+                Background="LightGray"
+                Click="Button_Click"
+                />
+            <Border x:Name="menuBorder" Visibility="Hidden">
+                <StackPanel>
+                    <Button
+                        Content="Workouts"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        />
+                    <Button
+                        Content="WorkoutDetails"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        />
+                    <Button
+                        Content="AddWorkouts"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        />
+                    <Button
+                        Content="Sign out"
+                        Height="50"
+                        Foreground="LightGray"
+                        Background="Crimson"
+                        />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
     </Grid>
 
 </Window>

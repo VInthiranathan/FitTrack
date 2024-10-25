@@ -1,4 +1,5 @@
 ﻿using FitTrack.MVVM;
+using FitTrack.View;
 using MVVMgenomgang.MVVM;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace FitTrack.ViewModel
         private string username;
         private string password;
         private string confirmPassword;
-        private Accountmanager accountmanager;
+        private readonly Accountmanager accountmanager = new Accountmanager();
 
         public string Username
         {
@@ -50,7 +51,6 @@ namespace FitTrack.ViewModel
 
         public RegisterViewModel()
         {
-            accountmanager = new Accountmanager();
             RegisterCommand = new RelayCommand(ExecuteRegister, CanExecuteRegister);
         }
 
