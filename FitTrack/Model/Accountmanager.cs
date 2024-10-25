@@ -1,5 +1,6 @@
 ﻿using FitTrack.Model;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Metrics;
 
 namespace FitTrack.ViewModel
 {
@@ -17,13 +18,13 @@ namespace FitTrack.ViewModel
             return users.Any(u => u.Username == username && u.Password == password);
         }
         // Lägger till användare (Register)
-        public bool RegisterUser(string username, string password)
+        public bool RegisterUser(string username, string password, string firstName, string lastName, string email, string country)
         {
             if (users.Any(u => u.Username == username))
             {
                 return false; // Användarnamnet är upptaget
             }
-            Person user = new User(username, password);
+            Person user = new User(username, password, firstName, lastName, email, country);
             users.Add(user);
             return true; // Registrering lyckades
         }

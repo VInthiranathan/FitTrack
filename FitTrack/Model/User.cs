@@ -9,26 +9,24 @@ namespace FitTrack.Model
 {
     public class User : Person
     {
-        public string EMail { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
         public string Country { get; set; }
-        public string SecurityQ { get; set; }
-        public string SecurityA {  get; set; }
+
         public User(string username, string password) : base(username, password)
         {
 
         }
-        public User(string username, string password, string email, string country, string securityQ, string securityA) : base(username, password)
+        public User(string username, string password, string firstName, string lastName, string email, string country)
+            : base(username, password)
         {
-            EMail = email;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
             Country = country;
-            SecurityQ = securityQ;
-            SecurityA = securityA;
         }
-        public void SecurityCheck(string securityQ, string securityA)
-        {
-            SecurityQ = securityQ;
-            SecurityA = securityA;
-        }
+
         public override void SignIn()
         {
             MessageBox.Show("You are a User", "User");
