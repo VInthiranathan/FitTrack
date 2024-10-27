@@ -11,11 +11,15 @@ namespace FitTrack.Model
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public Person(string username, string password)
+        public Person(string username, string password, string firstName, string lastName)
         {
             Username = username;
             Password = password;
+            FirstName = firstName;
+            LastName = lastName;
         }
         public abstract void SignIn();
     }

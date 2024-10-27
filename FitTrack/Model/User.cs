@@ -13,18 +13,21 @@ namespace FitTrack.Model
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Country { get; set; }
+        public string SecQ { get; set; }
+        public string SecA { get; set; }
 
-        public User(string username, string password) : base(username, password)
+        public User(string username, string password,string firstName, string lastName)
+            : base(username, password, firstName, lastName)
         {
 
         }
-        public User(string username, string password, string firstName, string lastName, string email, string country)
-            : base(username, password)
+        public User(string username, string password, string firstName, string lastName, string email, string country, string secQ, string secA)
+            : base(username, password, firstName, lastName)
         {
-            FirstName = firstName;
-            LastName = lastName;
             Email = email;
             Country = country;
+            SecQ = secQ;
+            SecA = secA;
         }
 
         public override void SignIn()

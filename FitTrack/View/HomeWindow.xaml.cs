@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitTrack.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace FitTrack.View
         public HomeWindow()
         {
             InitializeComponent();
+            HomeViewModel viewModel = new HomeViewModel();
+            DataContext = viewModel;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

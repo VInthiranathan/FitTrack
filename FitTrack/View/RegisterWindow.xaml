@@ -168,16 +168,16 @@
                         HorizontalAlignment="Left"
                         />
                         <ComboBox
-                            Margin="0,5,0,5"
+                            Margin="0,0,0,5"
                             Width="255"
                             HorizontalAlignment="Left"
-                            ItemsSource="{Binding Questions}" 
-                            SelectedItem="{Binding SelectedQ, Mode=TwoWay}"
+                            ItemsSource="{Binding Questions, UpdateSourceTrigger=PropertyChanged}" 
+                            SelectedItem="{Binding SecQ, UpdateSourceTrigger=PropertyChanged}"
                             />
                         <TextBox
                             Grid.Row="5"
                             Grid.Column="1"
-                            Text="Hello"
+                            Text="{Binding SecA}"
                             Padding="0,5"
                             Width="255"
                             BorderThickness="0,0,0,1"
@@ -194,6 +194,7 @@
                         Height="35"
                         Margin="20,0,30,0"
                         Width="100"
+                        Command="{Binding ClearCommand}"
                         />
 
                     <Button

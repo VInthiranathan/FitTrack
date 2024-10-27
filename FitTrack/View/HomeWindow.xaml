@@ -27,8 +27,16 @@
                 <StackPanel Grid.Column="1">
                     <TextBlock
                         Grid.Column="1"
-                        Text="Hassan Hussin"
-                        Margin="0,5"
+                        Text="{Binding FirstName}"
+                        Margin="0,2"
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="LightGray"
+                        />
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="{Binding LastName}"
                         HorizontalAlignment="Center"
                         FontSize="12"
                         FontWeight="Bold"
@@ -38,7 +46,7 @@
                         Grid.Column="1"
                         Text="Administrator"
                         HorizontalAlignment="Center"
-                        FontSize="12"
+                        FontSize="10"
                         Foreground="LightGray"
                         />
                 </StackPanel>

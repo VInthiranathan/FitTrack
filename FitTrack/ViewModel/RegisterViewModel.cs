@@ -20,6 +20,9 @@ namespace FitTrack.ViewModel
         private string lastName;
         private string email;
         private string country;
+        private string secQ;
+        private string secA;
+        public List<string> Questions { get; set; }
 
         private readonly Accountmanager accountmanager = new Accountmanager();
 
@@ -93,15 +96,22 @@ namespace FitTrack.ViewModel
             }
         }
 
-        private string selectedQ;
-        public List<string> Questions { get; set; }
-        public string SelectedQ
+        public string SecQ
         {
-            get => selectedQ;
+            get => secQ;
             set
             {
-                selectedQ = value;
-                OnPropertyChanged(nameof(SelectedQ));
+                secQ = value;
+                OnPropertyChanged(nameof(SecQ));
+            }
+        }
+        public string SecA
+        {
+            get => secA;
+            set
+            {
+                secA = value;
+                OnPropertyChanged(nameof(SecA));
             }
         }
 
@@ -110,25 +120,37 @@ namespace FitTrack.ViewModel
         public RegisterViewModel()
         {
             Questions = new List<string>
-        {
-            "Item 1",
-            "Item 2",
-            "Item 3",
-            "Item 4"
-        };
+            {
+                "Favorite food?",
+                "First pets name?",
+                "Where were you born?",
+                "Favorite color?"
+            };
             RegisterCommand = new RelayCommand(ExecuteRegister, CanExecuteRegister);
 
         }
 
         private void ExecuteRegister(object parameter)
         {
+            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
+            {
+                MessageBox.Show("Username and password cannot be empty!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            /*
+            if (!IsPasswordStrong(Password))
+            {
+                MessageBox.Show("Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character.", "Weak Password", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            */
             if (Password != ConfirmPassword)
             {
                 MessageBox.Show("Password dont match!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (accountmanager.RegisterUser(Username, Password, FirstName, LastName, Email, Country))
+            if (accountmanager.RegisterUser(Username, Password, FirstName, LastName, Email, Country, SecQ, SecA))
             {
                 MessageBox.Show("You have seccesfully created an account", "Sign up", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -147,7 +169,37 @@ namespace FitTrack.ViewModel
                 && !string.IsNullOrWhiteSpace(FirstName)
                 && !string.IsNullOrWhiteSpace(LastName)
                 && !string.IsNullOrWhiteSpace(Email)
-                && !string.IsNullOrWhiteSpace(Country);
+                && !string.IsNullOrWhiteSpace(Country)
+                && !string.IsNullOrWhiteSpace(SecQ)
+                && !string.IsNullOrWhiteSpace(SecA);
+        }
+        private bool IsPasswordStrong(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return false;
+            }
+
+            bool isLongEnough = password.Length >= 8;
+            bool hasUpperCase = password.Any(char.IsUpper);
+            bool hasLowerCase = password.Any(char.IsLower);
+            bool hasDigit = password.Any(char.IsDigit);
+            bool hasSpecialChar = password.Any(ch => !char.IsLetterOrDigit(ch));
+
+            return isLongEnough && hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar;
+        }
+
+        private void ClearAll()
+        {
+            Username = string.Empty;
+            FirstName = string.Empty;
+            LastName = string.Empty;
+            Password = string.Empty;
+            ConfirmPassword = string.Empty;
+            Email = string.Empty;
+            SecA = string.Empty;
+            Country = null;
+            SecQ = null;
         }
 
     }
