@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
-using MVVMgenomgang.MVVM;
 using FitTrack.View;
 using System.Collections.ObjectModel;
 
@@ -53,7 +52,11 @@ namespace FitTrack.ViewModel
             {
                 // Inloggning
                 System.Windows.MessageBox.Show("The login was successful", "Login", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
+                HomeWindow homeWindow = new HomeWindow()
+                {
+                    // Skicka värden av accountmanager till HomeWindow
+                    DataContext = new HomeViewModel(accountmanager)
+                };
                 RequestClose?.Invoke(); // Signalerar att fönstret ska stängas.
                 homeWindow.Show(); // Nytt fönster
 

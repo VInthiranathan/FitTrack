@@ -44,7 +44,7 @@
                         />
                     <TextBlock
                         Grid.Column="1"
-                        Text="Administrator"
+                        Text="{Binding UserType}"
                         HorizontalAlignment="Center"
                         FontSize="10"
                         Foreground="LightGray"
@@ -67,24 +67,40 @@
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
+                        Command="{Binding WourkoutCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                         />
                     <Button
                         Content="WorkoutDetails"
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
+                        Command="{Binding WourkoutDetailsCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                         />
                     <Button
                         Content="AddWorkouts"
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
+                        Command="{Binding AddWourkoutCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        />
+                    <Button
+                        Content="UserDetails"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding UserDetailsCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                         />
                     <Button
                         Content="Sign out"
                         Height="50"
                         Foreground="LightGray"
                         Background="Crimson"
+                        Command="{Binding SignOutCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                         />
                 </StackPanel>
             </Border>

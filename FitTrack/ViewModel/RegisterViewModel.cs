@@ -1,6 +1,5 @@
 ﻿using FitTrack.MVVM;
 using FitTrack.View;
-using MVVMgenomgang.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;

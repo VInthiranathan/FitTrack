@@ -29,6 +29,10 @@ namespace FitTrack.Model
             SecQ = secQ;
             SecA = secA;
         }
+        public override string GetRole()
+        {
+            return "User";
+        }
 
         public override void SignIn()
         {

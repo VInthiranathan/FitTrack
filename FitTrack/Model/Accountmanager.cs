@@ -12,7 +12,7 @@ namespace FitTrack.ViewModel
             new User("user2", "password1", "George", "Russell"),
             new AdminUser("admin", "password1", "Hassan", "Hussin")
         };
-        static Person? CurrentUser { get; set; }
+        public Person CurrentUser { get; set; }
 
         // Kontrollerar användare för inloggning
         public bool ValidateLogin(string username, string password)

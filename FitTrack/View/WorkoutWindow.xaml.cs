@@ -22,6 +22,19 @@ namespace FitTrack.View
         public WorkoutWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void menBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (menuBorder.Visibility == Visibility.Hidden)
+            {
+                menuBorder.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                menuBorder.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

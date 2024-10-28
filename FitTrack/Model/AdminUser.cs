@@ -15,6 +15,11 @@ namespace FitTrack.Model
 
         }
 
+        public override string GetRole()
+        {
+            return "Admin";
+        }
+
         public override void SignIn()
         {
             MessageBox.Show("You are a Admin user", "User");

@@ -8,5 +8,11 @@ namespace FitTrack.ViewModel
 {
     class AddWorkoutViewModel
     {
+        private readonly Accountmanager accountmanager;
+
+        public AddWorkoutViewModel(Accountmanager accountmanager)
+        {
+            this.accountmanager = accountmanager;
+        }
     }
 }

@@ -22,5 +22,6 @@ namespace FitTrack.Model
             LastName = lastName;
         }
         public abstract void SignIn();
+        public abstract string GetRole();
     }
 }
