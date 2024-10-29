@@ -5,41 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FitTrack.ViewModel
 {
     internal class WorkoutViewModel : ViewModelBase
     {
         private readonly Accountmanager accountmanager;
-        public RelayCommand SignOutCommand { get; }
 
         public string FirstName => accountmanager.CurrentUser.FirstName;
 
         public string LastName => accountmanager.CurrentUser.LastName;
         public string UserType => accountmanager.CurrentUser.GetType().Name;
+
+        public RelayCommand NavigateUserDetailsCommand { get; }
+        public RelayCommand NavigateWorkoutCommand { get; }
+        public RelayCommand NavigateAddWorkoutCommand { get; }
+        public RelayCommand NavigateWorkoutDetailsCommand { get; }
+        public RelayCommand SignOutCommand { get; }
+
+        private readonly NavigationCommandManager navigationCommandManager;
+
         public WorkoutViewModel(Accountmanager accountmanager)
         {
             this.accountmanager = accountmanager;
-            SignOutCommand = new RelayCommand(ExecuteSignOut);
-        }
-        public void ExecuteSignOut(object parameter)
-        {
-            // nollställer CurrentUser
-            accountmanager.CurrentUser = null;
+            navigationCommandManager = new NavigationCommandManager(accountmanager);
 
-            // öppnar mainwindow
-            Application.Current.MainWindow = new MainWindow();
-            Application.Current.MainWindow.Show();
+            NavigateUserDetailsCommand = navigationCommandManager.NavigateUserDetailsCommand;
+            NavigateWorkoutCommand = navigationCommandManager.NavigateWorkoutCommand;
+            NavigateAddWorkoutCommand = navigationCommandManager.NavigateAddWorkoutCommand;
+            NavigateWorkoutDetailsCommand = navigationCommandManager.NavigateWorkoutDetailsCommand;
+            SignOutCommand = navigationCommandManager.SignOutCommand;
 
-            CloseWindow((Window)parameter);
         }
-        static void CloseWindow(Window parameter)
-        {
-            // stänger homewindow
-            if (parameter is Window homeWindow)
-            {
-                homeWindow.Close();
-            }
-        }
+
     }
 }

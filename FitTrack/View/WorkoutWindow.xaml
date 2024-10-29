@@ -44,7 +44,7 @@
                         />
                     <TextBlock
                         Grid.Column="1"
-                        Text="Administrator"
+                        Text="{Binding UserType}"
                         HorizontalAlignment="Center"
                         FontSize="10"
                         Foreground="LightGray"
@@ -68,18 +68,32 @@
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
+                        Command="{Binding NavigateWorkoutCommand}"
+                        CommandParameter="{Binding accountmanager}"
                         />
                     <Button
                         Content="WorkoutDetails"
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
+                        Command="{Binding NavigateWorkoutDetailsCommand}"
+                        CommandParameter="{Binding accountmanager}"
                         />
                     <Button
                         Content="AddWorkouts"
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
+                        Command="{Binding NavigateAddWorkoutCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                    <Button
+                        Content="UserDetails"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateUserDetailsCommand}"
+                        CommandParameter="{Binding Accountmanager}"
                         />
                     <Button
                         Content="Sign out"
@@ -87,11 +101,20 @@
                         Foreground="LightGray"
                         Background="Crimson"
                         Command="{Binding SignOutCommand}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding accountmanager}"
                         />
                 </StackPanel>
             </Border>
         </StackPanel>
+        <TextBlock
+            Grid.Column="1"
+            Text="Workout"
+            FontSize="35"
+            FontWeight="Bold"
+            Foreground="LightGray"
+            Background="Crimson"
+            HorizontalAlignment="Stretch"
+            />
 
     </Grid>
 </Window>

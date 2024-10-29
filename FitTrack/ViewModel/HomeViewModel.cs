@@ -8,36 +8,57 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FitTrack.ViewModel
 {
     class HomeViewModel: ViewModelBase
     {
-        private readonly Accountmanager accountmanager;
-
+        public readonly Accountmanager accountmanager;
+        /*
         public RelayCommand SignOutCommand { get; }
         public RelayCommand WorkoutCommand { get; }
         public RelayCommand WorkoutDetailsCommand { get; }
         public RelayCommand AddWourkoutCommand { get; }
         public RelayCommand UserDetailsCommand { get; }
+        */
 
         public string FirstName => accountmanager.CurrentUser.FirstName;
 
         public string LastName => accountmanager.CurrentUser.LastName;
         public string UserType => accountmanager.CurrentUser.GetType().Name;
 
+
+        ///
+        public RelayCommand NavigateUserDetailsCommand { get; }
+        public RelayCommand NavigateWorkoutCommand { get; }
+        public RelayCommand NavigateAddWorkoutCommand { get; }
+        public RelayCommand NavigateWorkoutDetailsCommand { get; }
+        public RelayCommand SignOutCommand { get; }
+
+        private readonly NavigationCommandManager navigationCommandManager;
+
         public HomeViewModel(Accountmanager accountmanager)
         {
             // Ge värden från mainwindows accountmanager
             this.accountmanager = accountmanager;
+            navigationCommandManager = new NavigationCommandManager(accountmanager);
+
+            NavigateUserDetailsCommand = navigationCommandManager.NavigateUserDetailsCommand;
+            NavigateWorkoutCommand = navigationCommandManager.NavigateWorkoutCommand;
+            NavigateAddWorkoutCommand = navigationCommandManager.NavigateAddWorkoutCommand;
+            NavigateWorkoutDetailsCommand = navigationCommandManager.NavigateWorkoutDetailsCommand;
+            SignOutCommand = navigationCommandManager.SignOutCommand;
+            /*
             SignOutCommand = new RelayCommand(ExecuteSignOut);
             WorkoutCommand = new RelayCommand(NavigateWorkoutWindow);
             WorkoutDetailsCommand = new RelayCommand(NavigateWourkoutDetailsWindow);
             AddWourkoutCommand = new RelayCommand(NavigateAddWourkoutWindow);
             UserDetailsCommand = new RelayCommand(NavigateUserDetailsWindow);
+            */
 
         }
-
+        /*
         private void NavigateUserDetailsWindow(object parameter)
         {
             Application.Current.MainWindow = new UserDetailWindow()
@@ -102,6 +123,6 @@ namespace FitTrack.ViewModel
                 homeWindow.Close();
             }
         }
-
+        */
     }
 }

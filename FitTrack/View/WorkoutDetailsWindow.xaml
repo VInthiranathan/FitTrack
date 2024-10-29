@@ -6,7 +6,114 @@
         xmlns:local="clr-namespace:FitTrack.View"
         mc:Ignorable="d"
         Title="WorkoutDetailsWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="DimGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Background="Crimson" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--lägg in path till (Profile_png) -->
+                <Image Source="C:\Users\vinth\Desktop\OOP_Grund\FitTrack\FitTrack\Images\Profile_png.png"/>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="{Binding FirstName}"
+                        Margin="0,2"
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="LightGray"
+                        />
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="{Binding LastName}"
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="LightGray"
+                        />
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="{Binding UserType}"
+                        HorizontalAlignment="Center"
+                        FontSize="10"
+                        Foreground="LightGray"
+                        />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="1">
+            <Button
+                x:Name="menBtn"
+                Height="20"
+                Content="Menu"
+                Foreground="Crimson"
+                Background="LightGray"
+                Click="menBtn_Click"
+                />
+            <Border x:Name="menuBorder" Visibility="Hidden">
+                <StackPanel>
+                    <Button
+                        Content="Workouts"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateWorkoutCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                    <Button
+                        Content="WorkoutDetails"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateWorkoutDetailsCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                    <Button
+                        Content="AddWorkouts"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateAddWorkoutCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                    <Button
+                        Content="UserDetails"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateUserDetailsCommand}"
+                        CommandParameter="{Binding Accountmanager}"
+                        />
+                    <Button
+                        Content="Sign out"
+                        Height="50"
+                        Foreground="LightGray"
+                        Background="Crimson"
+                        Command="{Binding SignOutCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <TextBlock
+            Grid.Column="1"
+            Text="WorkoutDetails"
+            FontSize="35"
+            FontWeight="Bold"
+            Foreground="LightGray"
+            Background="Crimson"
+            HorizontalAlignment="Stretch"
+            />
     </Grid>
 </Window>

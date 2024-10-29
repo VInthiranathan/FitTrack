@@ -4,7 +4,7 @@ using System.Diagnostics.Metrics;
 
 namespace FitTrack.ViewModel
 {
-    internal class Accountmanager
+    public class Accountmanager
     {
         private static List<Person> users = new List<Person>
         {
