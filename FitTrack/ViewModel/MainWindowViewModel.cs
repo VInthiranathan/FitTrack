@@ -52,10 +52,10 @@ namespace FitTrack.ViewModel
             {
                 // Inloggning
                 System.Windows.MessageBox.Show("The login was successful", "Login", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow()
+                WorkoutWindow homeWindow = new WorkoutWindow()
                 {
                     // Skicka värden av accountmanager till HomeWindow
-                    DataContext = new HomeViewModel(accountmanager)
+                    DataContext = new WorkoutViewModel(accountmanager)
                 };
                 RequestClose?.Invoke(); // Signalerar att fönstret ska stängas.
                 homeWindow.Show(); // Nytt fönster
