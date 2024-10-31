@@ -1,7 +1,9 @@
-﻿using FitTrack.View;
+﻿using FitTrack.Model;
+using FitTrack.View;
 using FitTrack.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -14,18 +16,19 @@ namespace FitTrack.MVVM
     public class NavigationCommandManager
     {
         private readonly Accountmanager accountmanager;
-
+        private readonly ObservableCollection<Workout> workouts;
         // Konstruktor som tar in accountManager för att användas i alla kommandon
-        public NavigationCommandManager(Accountmanager accountmanager)
+        public NavigationCommandManager(Accountmanager accountmanager, ObservableCollection<Workout> workouts)
         {
             this.accountmanager = accountmanager;
+            this.workouts = workouts;
 
             // kommandon för alla navigeringar
             NavigateUserDetailsCommand = new RelayCommand(OpenUserDetailsWindow);
             NavigateWorkoutCommand = new RelayCommand(OpenWorkoutWindow);
             NavigateAddWorkoutCommand = new RelayCommand(OpenAddWorkoutWindow);
-            NavigateWorkoutDetailsCommand = new RelayCommand(OpenWorkoutDetailsWindow);
             SignOutCommand = new RelayCommand(ExecuteSignOut);
+            ShowInfoCommand = new RelayCommand(param => ShowInfo(null, null));
         }
 
         public RelayCommand NavigateUserDetailsCommand { get; }
@@ -33,12 +36,13 @@ namespace FitTrack.MVVM
         public RelayCommand NavigateAddWorkoutCommand { get; }
         public RelayCommand NavigateWorkoutDetailsCommand { get; }
         public RelayCommand SignOutCommand { get; }
+        public RelayCommand ShowInfoCommand { get; }
 
         private void OpenUserDetailsWindow(object parameter)
         {
             var userDetailsWindow = new UserDetailWindow
             {
-                DataContext = new UserDetailViewModel(accountmanager)
+                DataContext = new UserDetailViewModel(accountmanager, workouts)
             };
             userDetailsWindow.Show();
             CloseCurrentWindow(userDetailsWindow);
@@ -48,7 +52,7 @@ namespace FitTrack.MVVM
         {
             var workoutWindow = new WorkoutWindow
             {
-                DataContext = new WorkoutViewModel(accountmanager)
+                DataContext = new WorkoutViewModel(accountmanager, workouts)
             };
             workoutWindow.Show();
             CloseCurrentWindow(workoutWindow);
@@ -57,20 +61,12 @@ namespace FitTrack.MVVM
         {
             var addworkoutWindow = new AddWorkoutWindow
             {
-                DataContext = new AddWorkoutViewModel(accountmanager)
+                DataContext = new AddWorkoutViewModel(accountmanager, workouts)
             };
             addworkoutWindow.Show();
             CloseCurrentWindow(addworkoutWindow);
         }
-        private void OpenWorkoutDetailsWindow(object parameter)
-        {
-            var workoutDetailsWindow = new WorkoutDetailsWindow
-            {
-                DataContext = new WorkoutDetailsViewModel(accountmanager)
-            };
-            workoutDetailsWindow.Show();
-            CloseCurrentWindow(workoutDetailsWindow);
-        }
+
         private void ExecuteSignOut(object parameter)
         {
             accountmanager.CurrentUser = null;
@@ -88,6 +84,12 @@ namespace FitTrack.MVVM
                     break;
                 }
             }
+        }
+        private void ShowInfo(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("With the FitTrack app you can easily log all your workouts and stay on top of your fitness journey.\n" +
+                "As administrators can monitor the workout logs of all their team members, ensuring everyone stays motivated and accountable.\n" +
+                "Get fit with FitTrack!", "About FitTrack", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

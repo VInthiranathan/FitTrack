@@ -59,24 +59,30 @@
                 Content="Menu"
                 Foreground="Crimson"
                 Background="LightGray"
-                Click="menBtn_Click"
                 />
-            <Border x:Name="menuBorder" Visibility="Hidden">
+            <Border x:Name="menuBorder">
                 <StackPanel>
+                    <Button
+                        Content="Sign out"
+                        Height="50"
+                        Foreground="LightGray"
+                        Background="Crimson"
+                        Command="{Binding SignOutCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                    <Button
+                        Content="Info"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateShowInfo}"
+                        />
                     <Button
                         Content="Workouts"
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
                         Command="{Binding NavigateWorkoutCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
-                    <Button
-                        Content="WorkoutDetails"
-                        Height="50"
-                        Foreground="Crimson"
-                        Background="LightGray"
-                        Command="{Binding NavigateWorkoutDetailsCommand}"
                         CommandParameter="{Binding accountmanager}"
                         />
                     <Button
@@ -95,14 +101,6 @@
                         Command="{Binding NavigateUserDetailsCommand}"
                         CommandParameter="{Binding Accountmanager}"
                         />
-                    <Button
-                        Content="Sign out"
-                        Height="50"
-                        Foreground="LightGray"
-                        Background="Crimson"
-                        Command="{Binding SignOutCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
                 </StackPanel>
             </Border>
         </StackPanel>
@@ -115,5 +113,118 @@
             Background="Crimson"
             HorizontalAlignment="Stretch"
             />
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Workout Type:"
+                VerticalAlignment="Center"
+                Margin="0,5"
+                />
+            <ComboBox
+                x:Name="WorkoutType"
+                Grid.Row="0"
+                Grid.Column="1" 
+                SelectedItem="{Binding SelectedWorkoutType, Mode=TwoWay}" 
+                DisplayMemberPath="."
+                Margin="5"
+                />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="Date:"
+                VerticalAlignment="Center"
+                Margin="0,5"
+                />
+            <DatePicker
+                Grid.Row="1"
+                Grid.Column="1" 
+                SelectedDate="{Binding Date, Mode=TwoWay}"
+                Margin="5"
+                />
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="Type:"
+                VerticalAlignment="Center"
+                Margin="0,5"
+                />
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1" 
+                Text="{Binding Type, Mode=TwoWay}"
+                Margin="5"
+                />
+
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="0"
+                Text="Duration (hh:mm):"
+                VerticalAlignment="Center"
+                Margin="0,5"
+                />
+            <TextBox
+                Grid.Row="3"
+                Grid.Column="1" 
+                Text="{Binding Duration, Mode=TwoWay}"
+                Margin="5"
+                />
+
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="0"
+                Text="Calories Burned:"
+                VerticalAlignment="Center"
+                Margin="0,5"
+                />
+            <TextBox
+                Grid.Row="4"
+                Grid.Column="1" 
+                Text="{Binding CaloriesBurned, Mode=TwoWay}"
+                Margin="5"
+                />
+
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="0"
+                Text="Notes:"
+                VerticalAlignment="Top"
+                Margin="0,5"
+                />
+            <TextBox
+                Grid.Row="5"
+                Grid.Column="1" 
+                Text="{Binding Notes, Mode=TwoWay}" 
+                AcceptsReturn="True" Height="100" 
+                VerticalScrollBarVisibility="Auto"
+                Margin="5"
+                />
+            
+            <Button
+                Grid.Row="6" 
+                Content="Save Workout" 
+                Command="{Binding SaveCommand}" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
+                Grid.Column="2"
+                Margin="5"
+                />
+        </Grid>
     </Grid>
 </Window>

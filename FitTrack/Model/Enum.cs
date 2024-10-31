@@ -25,5 +25,10 @@ namespace FitTrack.MVVM
         China,
         Netherlands
     }
+    public enum WorkoutType
+    {
+        Cardio,
+        Strength
+    }
 
 }

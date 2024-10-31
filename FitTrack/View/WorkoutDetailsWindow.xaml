@@ -59,42 +59,9 @@
                 Content="Menu"
                 Foreground="Crimson"
                 Background="LightGray"
-                Click="menBtn_Click"
                 />
-            <Border x:Name="menuBorder" Visibility="Hidden">
+            <Border x:Name="menuBorder">
                 <StackPanel>
-                    <Button
-                        Content="Workouts"
-                        Height="50"
-                        Foreground="Crimson"
-                        Background="LightGray"
-                        Command="{Binding NavigateWorkoutCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
-                    <Button
-                        Content="WorkoutDetails"
-                        Height="50"
-                        Foreground="Crimson"
-                        Background="LightGray"
-                        Command="{Binding NavigateWorkoutDetailsCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
-                    <Button
-                        Content="AddWorkouts"
-                        Height="50"
-                        Foreground="Crimson"
-                        Background="LightGray"
-                        Command="{Binding NavigateAddWorkoutCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
-                    <Button
-                        Content="UserDetails"
-                        Height="50"
-                        Foreground="Crimson"
-                        Background="LightGray"
-                        Command="{Binding NavigateUserDetailsCommand}"
-                        CommandParameter="{Binding Accountmanager}"
-                        />
                     <Button
                         Content="Sign out"
                         Height="50"
@@ -115,5 +82,24 @@
             Background="Crimson"
             HorizontalAlignment="Stretch"
             />
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20">
+            <TextBlock Text="Date:" />
+            <TextBox Text="{Binding Date, StringFormat='d'}" IsReadOnly="{Binding IsReadOnly}" />
+
+            <TextBlock Text="Type:" />
+            <TextBox Text="{Binding Type}" IsReadOnly="{Binding IsReadOnly}" />
+
+            <TextBlock Text="Duration:" />
+            <TextBox Text="{Binding Duration}" IsReadOnly="{Binding IsReadOnly}" />
+
+            <TextBlock Text="Calories burned:" />
+            <TextBox Text="{Binding CaloriesBurned}" IsReadOnly="{Binding IsReadOnly}" />
+
+            <TextBlock Text="Notes:" />
+            <TextBox Text="{Binding Notes}" IsReadOnly="{Binding IsReadOnly}" AcceptsReturn="True" Height="100" />
+
+            <Button Content="Edit" Command="{Binding ToggleEditCommand}" />
+            <Button Content="Save" IsEnabled="{Binding IsEditing}" Command="{Binding SaveCommand}" />
+        </StackPanel>
     </Grid>
 </Window>

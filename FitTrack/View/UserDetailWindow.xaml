@@ -59,24 +59,30 @@
                 Content="Menu"
                 Foreground="Crimson"
                 Background="LightGray"
-                Click="menBtn_Click"
                 />
-            <Border x:Name="menuBorder" Visibility="Hidden">
+            <Border x:Name="menuBorder">
                 <StackPanel>
+                    <Button
+                        Content="Sign out"
+                        Height="50"
+                        Foreground="LightGray"
+                        Background="Crimson"
+                        Command="{Binding SignOutCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                    <Button
+                        Content="Info"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateShowInfo}"
+                        />
                     <Button
                         Content="Workouts"
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
                         Command="{Binding NavigateWorkoutCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
-                    <Button
-                        Content="WorkoutDetails"
-                        Height="50"
-                        Foreground="Crimson"
-                        Background="LightGray"
-                        Command="{Binding NavigateWorkoutDetailsCommand}"
                         CommandParameter="{Binding accountmanager}"
                         />
                     <Button
@@ -95,14 +101,6 @@
                         Command="{Binding NavigateUserDetailsCommand}"
                         CommandParameter="{Binding Accountmanager}"
                         />
-                    <Button
-                        Content="Sign out"
-                        Height="50"
-                        Foreground="LightGray"
-                        Background="Crimson"
-                        Command="{Binding SignOutCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
                 </StackPanel>
             </Border>
         </StackPanel>
@@ -115,5 +113,198 @@
             Background="Crimson"
             HorizontalAlignment="Stretch"
             />
+        <Border
+            Grid.Column="1"
+            Grid.Row="1"
+            Height="370"
+            >
+
+            <StackPanel Orientation="Vertical" Margin="20">
+
+                <Grid x:Name="innerGrid" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Text="First Name"
+                        Grid.Row="0"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBlock
+                        Text="Last Name"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBox
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
+                        />
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
+                        />
+                    <TextBlock
+                        Text="Username"
+                        Grid.Row="2"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBlock
+                        Text="E-Mail"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBox
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                        />
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                        />
+
+                    <TextBlock
+                        Text="Password"
+                        Grid.Row="4"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        />
+                    <TextBlock
+                        Text="Repeat password"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        />
+
+                    <TextBox
+                        Grid.Row="5"
+                        Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        />
+
+                    <TextBox
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Text="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}"
+                        Padding="0,5"
+                        Width="255"
+                        BorderThickness="0,0,0,1"
+                        HorizontalAlignment="Left"
+                        />
+                    <StackPanel Grid.Row="6" Orientation="Horizontal">
+                        <TextBlock
+                            Text="Country"
+                            Margin="0,15"
+                            HorizontalAlignment="Left"
+                            />
+                        <ComboBox
+                            x:Name="CountryComboBox"
+                            Margin="50,5,0,50"
+                            Width="150"
+                            Height="25"
+                            HorizontalAlignment="Left"
+                            Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"
+                            />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Vertical">
+                        <TextBlock
+                            Text="Security for you account"
+                            Grid.Column="1"
+                            Margin="0,10"
+                            HorizontalAlignment="Left"
+                            />
+                        <TextBox
+                            Margin="0,0,0,5"
+                            Width="255"
+                            HorizontalAlignment="Left"
+                            Text="{Binding SecQ}"
+                            />
+                        <TextBox
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Text="{Binding SecA}"
+                            Padding="0,5"
+                            Width="255"
+                            BorderThickness="0,0,0,1"
+                            HorizontalAlignment="Left"
+                            />
+                    </StackPanel>
+
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Button 
+                        Content="Clear" 
+                        Background="LightGray"
+                        Foreground="Crimson"
+                        Height="35"
+                        Margin="20,0,30,0"
+                        Width="100"
+                        Command="{Binding ClearCommand}"
+                        />
+
+                    <Button
+                        x:Name="Confirm" 
+                        Content="Save" 
+                        Background="Crimson"
+                        Foreground="LightGray"
+                        Margin="0,10"
+                        Height="35"
+                        Width="250"
+                        Command="{Binding SaveCommand}"
+                        />
+
+                    <Button 
+                        Content="Cancel" 
+                        Background="LightGray"
+                        Foreground="Crimson"
+                        Height="35"
+                        Margin="30,10"
+                        Width="100"
+                        Command="{Binding NavigateWorkoutCommand}"
+                        />
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

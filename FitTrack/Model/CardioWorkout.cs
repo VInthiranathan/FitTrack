@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace FitTrack.Model
 {
-    class CardioWorkout : Workout
+    public class CardioWorkout : Workout
     {
         public int Distance { get; set; }
-        public CardioWorkout(DateTime dateTime, string type, TimeSpan duration) : base(dateTime, type, duration)
-        {
-
-        }
 
         public override int CalculateCaloriesBurned()
         {
-            return 400;
+            // Ingen exat uträkning
+            CaloriesBurned = (int)(Distance * 0.5 * Duration.TotalMinutes);
+            return CaloriesBurned;
         }
     }
 }

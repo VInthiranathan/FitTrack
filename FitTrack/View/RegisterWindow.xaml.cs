@@ -28,10 +28,6 @@ namespace FitTrack.View
             DataContext = new RegisterViewModel();
             // lägger till värden från Enums till Combobox
             CountryCombo.ItemsSource = Enum.GetValues(typeof(Countries));
-            /*
-            RegisterViewModel viewModel = new RegisterViewModel();
-            DataContext viewModel = new RegisterViewModel();
-            */
 
 
         }

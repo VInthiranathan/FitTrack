@@ -61,22 +61,29 @@
                 Background="LightGray"
                 Click="menBtn_Click"
                 />
-            <Border x:Name="menuBorder" Visibility="Hidden">
+            <Border x:Name="menuBorder" Visibility="Visible">
                 <StackPanel>
+                    <Button
+                        Content="Sign out"
+                        Height="50"
+                        Foreground="LightGray"
+                        Background="Crimson"
+                        Command="{Binding SignOutCommand}"
+                        CommandParameter="{Binding accountmanager}"
+                        />
+                    <Button
+                        Content="Info"
+                        Height="50"
+                        Foreground="Crimson"
+                        Background="LightGray"
+                        Command="{Binding NavigateShowInfo}"
+                        />
                     <Button
                         Content="Workouts"
                         Height="50"
                         Foreground="Crimson"
                         Background="LightGray"
                         Command="{Binding NavigateWorkoutCommand}"
-                        CommandParameter="{Binding accountmanager}"
-                        />
-                    <Button
-                        Content="WorkoutDetails"
-                        Height="50"
-                        Foreground="Crimson"
-                        Background="LightGray"
-                        Command="{Binding NavigateWorkoutDetailsCommand}"
                         CommandParameter="{Binding accountmanager}"
                         />
                     <Button
@@ -94,14 +101,6 @@
                         Background="LightGray"
                         Command="{Binding NavigateUserDetailsCommand}"
                         CommandParameter="{Binding Accountmanager}"
-                        />
-                    <Button
-                        Content="Sign out"
-                        Height="50"
-                        Foreground="LightGray"
-                        Background="Crimson"
-                        Command="{Binding SignOutCommand}"
-                        CommandParameter="{Binding accountmanager}"
                         />
                 </StackPanel>
             </Border>
@@ -121,63 +120,47 @@
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
-                ItemsSource="{Binding Items}"
-                SelectedItem="{Binding SelectedItem}">
+                ItemsSource="{Binding Workouts}"
+                SelectedItem="{Binding SelectedWorkout}">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Header="Date"
-                        Binding="{Binding Name}"
+                        Binding="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}"
                         Width="1*"
                         />
                     <DataGridTextColumn
                         Header="Type"
-                        Binding="{Binding Name}"
-                        Width="1*"
-                        />
-                    <DataGridTextColumn
-                        Header="Duration"
-                        Binding="{Binding Name}"
-                        Width="1*"
-                        />
-                    <DataGridTextColumn
-                        Header="CaloriesBurned"
-                        Binding="{Binding Name}"
-                        Width="1*"
-                        />
-                    <DataGridTextColumn
-                        Header="Notes"
-                        Binding="{Binding Name}"
+                        Binding="{Binding Type}"
                         Width="2*"
+                        />
+                    <DataGridTextColumn
+                        Header="Owner"
+                        Binding="{Binding OwnerFullName}"
+                        Width="1*"
                         />
                 </DataGrid.Columns>
             </DataGrid>
-            
+
             <StackPanel Orientation="Horizontal" Margin="0,10">
-                <Button
-                    Content="WorkoutDetails"
-                    Height="50"
-                    Foreground="Crimson"
-                    Background="LightGray"
-                    Command="{Binding NavigateWorkoutDetailsCommand}"
-                    CommandParameter="{Binding accountmanager}"
-                    Margin="25,0,0,0"
-                    />
-                <Button
-                    Content="AddWorkouts"
-                    Height="50"
-                    Foreground="Crimson"
-                    Background="LightGray"
-                    Command="{Binding NavigateAddWorkoutCommand}"
-                    CommandParameter="{Binding accountmanager}"
-                    Margin="25,0,0,0"
-                    />
                 <Button
                     Content="RemoveWorkout"
                     Height="50"
+                    Width="150"
                     Foreground="Crimson"
                     Background="LightGray"
                     Margin="25,0,0,0"
+                    Command="{Binding RemoveWorkoutCommand}"
+                    />
+                <Button
+                    Content="WorkoutDetails"
+                    Height="50"
+                    Width="150"
+                    Margin="25,0,0,0"
+                    Foreground="Crimson"
+                    Background="LightGray"
+                    Command="{Binding WorkoutDetailsCommand}"
+                    CommandParameter="{Binding SelectedWorkout}"
                     />
             </StackPanel>
         </StackPanel>

@@ -15,7 +15,7 @@ namespace FitTrack.Model
         public string Country { get; set; }
         public string SecQ { get; set; }
         public string SecA { get; set; }
-
+        public List<Workout> Workouts { get; set; } = new List<Workout>();
         public User(string username, string password,string firstName, string lastName)
             : base(username, password, firstName, lastName)
         {

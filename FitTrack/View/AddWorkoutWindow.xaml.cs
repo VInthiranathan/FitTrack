@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitTrack.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,17 +23,7 @@ namespace FitTrack.View
         public AddWorkoutWindow()
         {
             InitializeComponent();
-        }
-        private void menBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (menuBorder.Visibility == Visibility.Hidden)
-            {
-                menuBorder.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                menuBorder.Visibility = Visibility.Hidden;
-            }
+            WorkoutType.ItemsSource = Enum.GetValues(typeof(WorkoutType));
         }
     }
 }

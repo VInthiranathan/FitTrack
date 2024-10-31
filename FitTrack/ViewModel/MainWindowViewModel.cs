@@ -17,7 +17,7 @@ namespace FitTrack.ViewModel
         private string username;
         private string password;
         private readonly Accountmanager accountmanager;
-
+        private readonly ObservableCollection<Workout> workouts;
         public string Username
         {
             get => username;
@@ -45,6 +45,7 @@ namespace FitTrack.ViewModel
         {
             accountmanager = new Accountmanager();
             LoginCommand = new RelayCommand(ExecuteLogin, CanExecuteLogin);
+            workouts = new ObservableCollection<Workout>();
         }
         private void ExecuteLogin(object parameter)
         {
@@ -55,7 +56,7 @@ namespace FitTrack.ViewModel
                 WorkoutWindow homeWindow = new WorkoutWindow()
                 {
                     // Skicka värden av accountmanager till HomeWindow
-                    DataContext = new WorkoutViewModel(accountmanager)
+                    DataContext = new WorkoutViewModel(accountmanager, workouts)
                 };
                 RequestClose?.Invoke(); // Signalerar att fönstret ska stängas.
                 homeWindow.Show(); // Nytt fönster
