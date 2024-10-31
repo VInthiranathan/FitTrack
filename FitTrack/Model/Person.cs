@@ -15,6 +15,7 @@ namespace FitTrack.Model
         public string LastName { get; set; }
         public string Email { get; internal set; }
         public string Country { get; internal set; }
+        public string SecA { get; set; }
 
         public Person(string username, string password, string firstName, string lastName)
         {

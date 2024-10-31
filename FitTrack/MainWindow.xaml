@@ -83,11 +83,13 @@
                         HorizontalAlignment="Left"
                         />
                 </Grid>
-
-                <TextBlock
-                    Text="forgot password?"
+                <Button
+                    Content="forgot password?"
                     HorizontalAlignment="Right"
-                    />
+                    Background="Transparent"
+                    BorderThickness="0" 
+                    Command="{Binding ForgotPassCommand}"
+                 />
 
                 <Button
                     x:Name="SigninBtn" 

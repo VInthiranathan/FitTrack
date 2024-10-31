@@ -40,12 +40,13 @@ namespace FitTrack.ViewModel
 
         public ICommand LoginCommand { get; }
         public event Action RequestClose; // En händelse/singal
-
+        public ICommand ForgotPassCommand { get; }
         public MainWindowViewModel()
         {
             accountmanager = new Accountmanager();
             LoginCommand = new RelayCommand(ExecuteLogin, CanExecuteLogin);
             workouts = new ObservableCollection<Workout>();
+            ForgotPassCommand = new RelayCommand(ForgotPass, null);
         }
         private void ExecuteLogin(object parameter)
         {
@@ -73,6 +74,16 @@ namespace FitTrack.ViewModel
         {
             // Aktivera knappen endast om användarnamnet och lösenordet inte är tomma
             return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+        }
+
+        private void ForgotPass(object parameter)
+        {
+            ForgotPass forgotpassW = new View.ForgotPass()
+            {
+                // Skicka värden av accountmanager till HomeWindow
+                DataContext = new ForgotPassViewModel(accountmanager)
+            };
+            forgotpassW.Show();
         }
     }
 }
