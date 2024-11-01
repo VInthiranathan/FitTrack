@@ -1,5 +1,5 @@
 # FitTrack
-Förskapade users: (ingen säkerhet satt)
+Förskapade users:
 för att testa funktionen glömtlösenord, skapa nytt konto!
 Username | Password
 user1    password1
