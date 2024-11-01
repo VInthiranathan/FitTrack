@@ -187,11 +187,18 @@ namespace FitTrack.ViewModel
 
         public void GetTemplate(object parameter)
         {
-            Date = accountmanager.TemplateWorkout.Date;
-            Duration = accountmanager.TemplateWorkout.Duration;
-            CaloriesBurned = accountmanager.TemplateWorkout.CaloriesBurned;
-            Notes = accountmanager.TemplateWorkout.Notes;
-            Type = accountmanager.TemplateWorkout.Type;
+            if(accountmanager.TemplateWorkout != null)
+            {
+                Date = accountmanager.TemplateWorkout.Date;
+                Duration = accountmanager.TemplateWorkout.Duration;
+                CaloriesBurned = accountmanager.TemplateWorkout.CaloriesBurned;
+                Notes = accountmanager.TemplateWorkout.Notes;
+                Type = accountmanager.TemplateWorkout.Type;
+            }
+            else
+            {
+                MessageBox.Show("You have no saved templates.","Error",MessageBoxButton.OK);
+            }
         }
     }
 }

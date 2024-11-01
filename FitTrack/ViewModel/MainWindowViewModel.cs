@@ -37,9 +37,22 @@ namespace FitTrack.ViewModel
                 OnPropertyChanged(nameof(Password));
             }
         }
+        Random random = new Random();
+        int sixDigitNumber;
+        private string security;
+        public string Security
+        {
+            get => security;
+            set
+            {
+                password = value;
+                OnPropertyChanged(nameof(Security));
+            }
+        }
 
         public ICommand LoginCommand { get; }
         public event Action RequestClose; // En händelse/singal
+        public ICommand GetSecurityCommand { get; }
         public ICommand ForgotPassCommand { get; }
         public MainWindowViewModel()
         {
@@ -47,6 +60,7 @@ namespace FitTrack.ViewModel
             LoginCommand = new RelayCommand(ExecuteLogin, CanExecuteLogin);
             workouts = new ObservableCollection<Workout>();
             ForgotPassCommand = new RelayCommand(ForgotPass, null);
+            GetSecurityCommand = new RelayCommand(GetSecurity);
         }
         private void ExecuteLogin(object parameter)
         {
@@ -84,6 +98,10 @@ namespace FitTrack.ViewModel
                 DataContext = new ForgotPassViewModel(accountmanager)
             };
             forgotpassW.Show();
+        }
+        private void GetSecurity(object parameter)
+        {
+            Security = Convert.ToString(sixDigitNumber = random.Next(100000, 1000000));
         }
     }
 }

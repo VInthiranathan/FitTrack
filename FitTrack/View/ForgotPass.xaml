@@ -56,7 +56,7 @@
                         Width="255"
                         BorderThickness="0,0,0,1"
                         HorizontalAlignment="Left"
-                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="0,0,0,46" Grid.RowSpan="2"
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                         />
                     <Button
                         Content="Get Security question" 
