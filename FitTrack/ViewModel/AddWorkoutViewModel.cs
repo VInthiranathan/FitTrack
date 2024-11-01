@@ -27,6 +27,7 @@ namespace FitTrack.ViewModel
         public RelayCommand NavigateAddWorkoutCommand { get; }
 
         public RelayCommand SaveCommand { get; }
+        public RelayCommand GetTemplateCommand { get; }
 
         private readonly NavigationCommandManager navigationCommandManager;
         public AddWorkoutViewModel(Accountmanager accountmanager, ObservableCollection<Workout> workouts)
@@ -42,6 +43,7 @@ namespace FitTrack.ViewModel
             NavigateShowInfo = navigationCommandManager.ShowInfoCommand;
 
             SaveCommand = new RelayCommand(SaveWorkout, CanSaveWorkout);
+            GetTemplateCommand = new RelayCommand(GetTemplate);
 
         }
         private string type;
@@ -158,8 +160,8 @@ namespace FitTrack.ViewModel
                     Owner = accountmanager.CurrentUser
                 };
             }
-            Accountmanager.Workouts.Add(newWorkout); // Lägger till i den lokala listan
-            MessageService.SendWorkoutAdded(newWorkout); // Skicka meddelande om nytt träningspass
+            Accountmanager.Workouts.Add(newWorkout); // Lägger till i listan
+            MessageService.SendWorkoutAdded(newWorkout); // Meddela om workout
 
             WorkoutWindow homeWindow = new WorkoutWindow()
             {
@@ -182,5 +184,14 @@ namespace FitTrack.ViewModel
             return !string.IsNullOrWhiteSpace(Type) && Date != default && Duration != default && CaloriesBurned > 0;
         }
 
+
+        public void GetTemplate(object parameter)
+        {
+            Date = accountmanager.TemplateWorkout.Date;
+            Duration = accountmanager.TemplateWorkout.Duration;
+            CaloriesBurned = accountmanager.TemplateWorkout.CaloriesBurned;
+            Notes = accountmanager.TemplateWorkout.Notes;
+            Type = accountmanager.TemplateWorkout.Type;
+        }
     }
 }

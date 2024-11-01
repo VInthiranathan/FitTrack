@@ -51,7 +51,7 @@ namespace FitTrack.ViewModel
             
             LoadWorkouts();
             RemoveWorkoutCommand = new RelayCommand(RemoveWorkout, CanExecuteWorkoutCommand);
-            // Prenumerera på händelsen när ett nytt träningspass läggs till
+            // Hämtar händelsen när ny workou läggs till
             MessageService.WorkoutAdded += OnWorkoutAdded;
         }
         private void LoadWorkouts()

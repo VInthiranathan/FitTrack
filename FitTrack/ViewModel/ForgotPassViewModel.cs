@@ -1,4 +1,5 @@
-﻿using FitTrack.MVVM;
+﻿using FitTrack.Model;
+using FitTrack.MVVM;
 using FitTrack.View;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,11 @@ namespace FitTrack.ViewModel
     public class ForgotPassViewModel : ViewModelBase
     {
         private readonly Accountmanager accountmanager;
+
         public List<string> Questions { get; set; }
         public ICommand GetPassCommand { get; }
+        public ICommand GetSecurityCommand { get; }
+        public ICommand CloseCommand { get; }
         public ForgotPassViewModel(Accountmanager accountmanager)
         {
             this.accountmanager = accountmanager;
@@ -27,11 +31,12 @@ namespace FitTrack.ViewModel
                 "Favorite color?"
             };
             GetPassCommand = new RelayCommand(ExecuteGetPass, CanExecutePass);
-
+            GetSecurityCommand = new RelayCommand(ExecuteGetUser, CanExecuteUser);
+            CloseCommand = new RelayCommand(CloseW);
         }
         private string username;
-        private string secQ;
         private string secA;
+        private string secQ;
         public string Username
         {
             get => username;
@@ -41,15 +46,6 @@ namespace FitTrack.ViewModel
                 OnPropertyChanged(nameof(Username));
             }
         }
-        public string SecQ
-        {
-            get => secQ;
-            set
-            {
-                secQ = value;
-                OnPropertyChanged(nameof(SecQ));
-            }
-        }
         public string SecA
         {
             get => secA;
@@ -57,6 +53,18 @@ namespace FitTrack.ViewModel
             {
                 secA = value;
                 OnPropertyChanged(nameof(SecA));
+            }
+        }
+        public string SecQ
+        {
+            get => secQ;
+            set
+            {
+                if (secQ != value)
+                {
+                    secQ = value;
+                    OnPropertyChanged(nameof(SecQ));
+                }
             }
         }
         private void ExecuteGetPass(object parameter)
@@ -79,11 +87,40 @@ namespace FitTrack.ViewModel
         }
         private bool CanExecutePass(object parameter)
         {
-            // Knappen är endast aktiv om användarnamnet och lösenordet inte är tomma
+            // Validering
             return !string.IsNullOrWhiteSpace(Username)
-                && !string.IsNullOrWhiteSpace(SecQ)
                 && !string.IsNullOrWhiteSpace(SecA);
         }
+        private bool CanExecuteUser(object parameter)
+        {
+            // Validering
+            return !string.IsNullOrWhiteSpace(Username);
+        }
+        private void ExecuteGetUser(object parameter)
+        {
+            if (accountmanager.GetPassword(Username))
+            {
+                // Sätt SecQ till säkerhetsfrågan från den nuvarande användaren
+                SecQ = accountmanager.CurrentUser.GetSecQ();
 
+                System.Windows.MessageBox.Show("Please answer your security question.", "Login", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Wrong username! Try again.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+        }
+        public void CloseW(object parameter)
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                // Stänger window som tillhör denna ViewModel
+                if (window.DataContext == this)
+                {
+                    window.Close();
+                    break;
+                }
+            }
+        }
     }
 }

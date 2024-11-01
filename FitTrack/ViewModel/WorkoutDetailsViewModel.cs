@@ -25,6 +25,8 @@ namespace FitTrack.ViewModel
         private Workout workout;
         private bool isEditing;
 
+        public ICommand SaveTemplateCommand { get; }
+
         public WorkoutDetailsViewModel(ObservableCollection<Workout> workouts, Workout workout, Accountmanager accountmanager)
         {
             this.accountmanager = accountmanager;
@@ -32,6 +34,7 @@ namespace FitTrack.ViewModel
             this.workouts = workouts;
             ToggleEditCommand = new RelayCommand(change => ToggleEditing());
             SaveCommand = new RelayCommand(SaveWorkout);
+            SaveTemplateCommand = new RelayCommand(SaveTemplate);
         }
 
         public DateTime Date
@@ -104,16 +107,16 @@ namespace FitTrack.ViewModel
 
         public bool ValidateInputs()
         {
-            // Här kan du implementera validering av inmatade värden
+            // validering
             return !string.IsNullOrWhiteSpace(Type) &&
                 Duration.TotalSeconds > 0 &&
-                CaloriesBurned >= 0; // Exempel på validering
+                CaloriesBurned >= 0;
         }
         private void SaveWorkout(object parameter)
         {
             if (!ValidateWorkout())
             {
-                return; // Avbryt om valideringen misslyckas
+                return; // valideringen fail
             }
             // Öppna det nya WorkoutWindow
             WorkoutWindow homeWindow = new WorkoutWindow()
@@ -133,28 +136,28 @@ namespace FitTrack.ViewModel
         }
         private bool ValidateWorkout()
         {
-            // Kontrollera att datumet är giltigt
+            // Kontrollera värden på workout
             if (Date == default(DateTime))
             {
                 MessageBox.Show("Please enter a valid date.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-
-            // Kontrollera att typ av träning inte är tom
             if (string.IsNullOrWhiteSpace(Type))
             {
                 MessageBox.Show("Please enter a workout type.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-
-            // Kontrollera att varaktigheten är större än noll
             if (Duration <= TimeSpan.Zero)
             {
                 MessageBox.Show("Duration must be greater than zero.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-
-            return true; // Validering lyckades
+            // giltiga värden
+            return true;
+        }
+        private void SaveTemplate(object parameter)
+        {
+            accountmanager.TemplateWorkout = workout;
         }
     }
 }

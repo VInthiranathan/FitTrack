@@ -136,13 +136,11 @@ namespace FitTrack.ViewModel
                 MessageBox.Show("Username and password cannot be empty!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            /*
             if (!IsPasswordStrong(Password))
             {
                 MessageBox.Show("Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character.", "Weak Password", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            */
             if (Password != ConfirmPassword)
             {
                 MessageBox.Show("Password dont match!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -161,7 +159,7 @@ namespace FitTrack.ViewModel
 
         private bool CanExecuteRegister(object parameter)
         {
-            // Knappen är endast aktiv om användarnamnet och lösenordet inte är tomma
+            // Validering
             return !string.IsNullOrWhiteSpace(Username)
                 && !string.IsNullOrWhiteSpace(Password)
                 && !string.IsNullOrWhiteSpace(ConfirmPassword)

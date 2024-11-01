@@ -9,8 +9,8 @@ namespace FitTrack.Model
 {
     public class AdminUser : Person
     {
-        public AdminUser(string username, string password, string firstName, string lastName)
-            : base(username, password, firstName, lastName)
+        public AdminUser(string username, string password, string firstName, string lastName, string secQ, string secA)
+            : base(username, password, firstName, lastName, secQ, secA)
         {
 
         }

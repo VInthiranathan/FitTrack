@@ -9,12 +9,14 @@ namespace FitTrack.ViewModel
     {
         public static List<Person> Users = new List<Person>
         {
-            new User("user1", "password1", "Lewis", "Hamilton"),
-            new User("user2", "password1", "George", "Russell"),
-            new AdminUser("admin", "password1", "Hassan", "Hussin")
+            new User("user1", "password1", "Lewis", "Hamilton", "What comes after A", "B"),
+            new User("user2", "password1", "George", "Russell","What comes after A", "B"),
+            new AdminUser("admin", "password1", "Hassan", "Hussin","What comes after A", "B")
         };
 
         public Person CurrentUser { get; set; }
+
+        public Workout TemplateWorkout { get; set; }
 
         // Förskapad träningspass
         public static List<Workout> Workouts = new List<Workout>
@@ -41,9 +43,10 @@ namespace FitTrack.ViewModel
                 Owner = Users[0]
             }
         };
+
         static Accountmanager()
         {
-            // Lägg till träningspassen i respektive användares lista
+            // Träningspass till ägaresns lista
             foreach (var workout in Workouts)
             {
                 if (workout.Owner is User ownerUser)
@@ -62,19 +65,19 @@ namespace FitTrack.ViewModel
             return user.Workouts;
         }
 
-        // Kontrollerar användare för inloggning
+        // Kontroll för inloggning
         public bool ValidateLogin(string username, string password)
         {
             var user = Users.OfType<Person>().FirstOrDefault(u => u.Username == username && u.Password == password);
             if (user != null)
             {
-                // Sparar användare som loggar in
+                // Spara user som loggar in
                 CurrentUser = user;
                 return true;
             }
             return false;
         }
-        // Lägger till användare (Register)
+        // Lägger till user
         public bool RegisterUser(string username, string password, string firstName, string lastName, string email, string country, string secQ, string secA)
         {
             if (Users.Any(u => u.Username == username))
@@ -121,7 +124,19 @@ namespace FitTrack.ViewModel
             CurrentUser.Email = email;
             CurrentUser.Country = country;
             return true;
-            // Logik för att uppdatera användarens data i databasen
+            // Uppdaterar användarens värde
+        }
+
+        public bool GetPassword(string username)
+        {
+            var user = Users.OfType<Person>().FirstOrDefault(u => u.Username == username);
+            if (user != null)
+            {
+                // Sätter anvädare till CurrentUser (för forgotpassword)
+                CurrentUser = user;
+                return true;
+            }
+            return false;
         }
     }
 }

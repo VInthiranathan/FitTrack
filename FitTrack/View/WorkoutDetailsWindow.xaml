@@ -84,22 +84,50 @@
             />
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="20">
             <TextBlock Text="Date:" />
-            <TextBox Text="{Binding Date, StringFormat='d'}" IsReadOnly="{Binding IsReadOnly}" />
+            <TextBox
+                Text="{Binding Date, StringFormat='d'}"
+                IsReadOnly="{Binding IsReadOnly}"
+                />
 
             <TextBlock Text="Type:" />
-            <TextBox Text="{Binding Type}" IsReadOnly="{Binding IsReadOnly}" />
+            <TextBox
+                Text="{Binding Type}"
+                IsReadOnly="{Binding IsReadOnly}"
+                />
 
             <TextBlock Text="Duration:" />
-            <TextBox Text="{Binding Duration}" IsReadOnly="{Binding IsReadOnly}" />
+            <TextBox
+                Text="{Binding Duration}"
+                IsReadOnly="{Binding IsReadOnly}"
+                />
 
             <TextBlock Text="Calories burned:" />
-            <TextBox Text="{Binding CaloriesBurned}" IsReadOnly="{Binding IsReadOnly}" />
+            <TextBox
+                Text="{Binding CaloriesBurned}"
+                IsReadOnly="{Binding IsReadOnly}"
+                />
 
             <TextBlock Text="Notes:" />
-            <TextBox Text="{Binding Notes}" IsReadOnly="{Binding IsReadOnly}" AcceptsReturn="True" Height="100" />
+            <TextBox
+                Text="{Binding Notes}"
+                IsReadOnly="{Binding IsReadOnly}"
+                AcceptsReturn="True"
+                Height="100"
+                />
 
-            <Button Content="Edit" Command="{Binding ToggleEditCommand}" />
-            <Button Content="Save" IsEnabled="{Binding IsEditing}" Command="{Binding SaveCommand}" />
+            <Button
+                Content="Edit"
+                Command="{Binding ToggleEditCommand}"
+                />
+            <Button
+                Content="Save"
+                IsEnabled="{Binding IsEditing}"
+                Command="{Binding SaveCommand}"
+                />
+            <Button
+                Content="Save as Template"
+                Command="{Binding SaveTemplateCommand}"
+                />
         </StackPanel>
     </Grid>
 </Window>

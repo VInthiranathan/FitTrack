@@ -72,7 +72,7 @@ namespace FitTrack.ViewModel
         
         private bool CanExecuteLogin(object parameter)
         {
-            // Aktivera knappen endast om användarnamnet och lösenordet inte är tomma
+            // Validering
             return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
         }
 

@@ -135,6 +135,11 @@
                         Width="2*"
                         />
                     <DataGridTextColumn
+                        Header="Duration"
+                        Binding="{Binding Duration}"
+                        Width="2*"
+                        />
+                    <DataGridTextColumn
                         Header="Owner"
                         Binding="{Binding OwnerFullName}"
                         Width="1*"

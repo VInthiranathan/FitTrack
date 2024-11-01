@@ -42,7 +42,7 @@ namespace FitTrack.MVVM
         //Bestämmer om kommandot kan köras eller inte
         public bool CanExecute(object? parameter) => true;
 
-        //Kör den logik som tilldelats via execute metoden
+
         public void Execute(object? parameter)
         {
             execute(parameter);

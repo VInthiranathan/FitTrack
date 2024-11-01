@@ -30,6 +30,7 @@ namespace FitTrack.ViewModel
         public RelayCommand SaveCommand { get; }
         public UserDetailViewModel(Accountmanager accountmanager, ObservableCollection<Workout> workouts)
         {
+            SecQ = accountmanager.CurrentUser.GetSecQ();
             this.accountmanager = accountmanager;
             this.workouts = workouts;
             navigationCommandManager = new NavigationCommandManager(accountmanager, workouts);
@@ -96,17 +97,40 @@ namespace FitTrack.ViewModel
             get => country;
             set { country = value; OnPropertyChanged(); }
         }
+        private string secA;
+        private string secQ;
+        public string SecA
+        {
+            get => secA;
+            set
+            {
+                secA = value;
+                OnPropertyChanged(nameof(SecA));
+            }
+        }
+        public string SecQ
+        {
+            get => secQ;
+            set
+            {
+                if (secQ != value)
+                {
+                    secQ = value;
+                    OnPropertyChanged(nameof(SecQ));
+                }
+            }
+        }
 
         private void ExecuteSave(object parameter)
         {
-            // Validera att nödvändiga fält är ifyllda och att lösenorden matchar
+            // Validera att lösenorden matchar
             if (Password != ConfirmPassword)
             {
                 MessageBox.Show("Password dont match!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // Kalla på metod för att spara ändringar, som en `UpdateUser` metod i `AccountManager`
+            // Spara ändringar
             if (accountmanager.UpdateUser(Username, Password, FirstName, LastName, Email, Country))
             {
                 MessageBox.Show("User has been updated!", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -122,7 +146,8 @@ namespace FitTrack.ViewModel
             return !string.IsNullOrWhiteSpace(Username)
                 && !string.IsNullOrWhiteSpace(FirstName)
                 && !string.IsNullOrWhiteSpace(LastName)
-                && !string.IsNullOrWhiteSpace(Email);
+                && !string.IsNullOrWhiteSpace(Email)
+                && IsPasswordStrong(Password);
         }
         private bool IsPasswordStrong(string password)
         {
