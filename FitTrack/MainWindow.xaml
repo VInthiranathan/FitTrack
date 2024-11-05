@@ -113,7 +113,7 @@
                         Width="255"
                         BorderThickness="0,0,0,1"
                         HorizontalAlignment="Left"
-                        Text="{Binding Security, UpdateSourceTrigger=PropertyChanged}"
+                        Text="{Binding InputSecurity, UpdateSourceTrigger=PropertyChanged}"
                         />
                 <Button
                     x:Name="SigninBtn" 

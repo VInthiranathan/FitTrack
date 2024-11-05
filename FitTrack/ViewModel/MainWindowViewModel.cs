@@ -39,14 +39,24 @@ namespace FitTrack.ViewModel
         }
         Random random = new Random();
         int sixDigitNumber;
-        private string security;
+        private string security = " ";
         public string Security
         {
             get => security;
             set
             {
-                password = value;
+                security = value;
                 OnPropertyChanged(nameof(Security));
+            }
+        }
+        private string inputSecurity;
+        public string InputSecurity
+        {
+            get => inputSecurity;
+            set
+            {
+                inputSecurity = value;
+                OnPropertyChanged(nameof(InputSecurity));
             }
         }
 
@@ -64,7 +74,7 @@ namespace FitTrack.ViewModel
         }
         private void ExecuteLogin(object parameter)
         {
-            if (accountmanager.ValidateLogin(Username, Password))
+            if (accountmanager.ValidateLogin(Username, Password) && InputSecurity == Security)
             {
                 // Inloggning
                 System.Windows.MessageBox.Show("The login was successful", "Login", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
@@ -76,6 +86,10 @@ namespace FitTrack.ViewModel
                 RequestClose?.Invoke(); // Signalerar att fönstret ska stängas.
                 homeWindow.Show(); // Nytt fönster
 
+            }
+            else if (string.IsNullOrEmpty(InputSecurity))
+            {
+                System.Windows.MessageBox.Show("Pleage get your 2FA and type in! ", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
             else
             {
