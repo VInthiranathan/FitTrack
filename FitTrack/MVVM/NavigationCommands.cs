@@ -70,7 +70,10 @@ namespace FitTrack.MVVM
         private void ExecuteSignOut(object parameter)
         {
             accountmanager.CurrentUser = null;
-            MainWindow newmain = new MainWindow();
+            var newmain = new MainWindow
+            {
+                DataContext = new MainWindowViewModel(accountmanager, workouts)
+            };
             newmain.Show();
             CloseCurrentWindow(newmain);
         }

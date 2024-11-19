@@ -64,14 +64,24 @@ namespace FitTrack.ViewModel
         public event Action RequestClose; // En händelse/singal
         public ICommand GetSecurityCommand { get; }
         public ICommand ForgotPassCommand { get; }
-        public MainWindowViewModel()
+        public MainWindowViewModel(Accountmanager accountmanager, ObservableCollection<Workout> workouts)
         {
-            accountmanager = new Accountmanager();
+            this.accountmanager = accountmanager;
             LoginCommand = new RelayCommand(ExecuteLogin, CanExecuteLogin);
-            workouts = new ObservableCollection<Workout>();
+            this.workouts = workouts;
             ForgotPassCommand = new RelayCommand(ForgotPass, null);
             GetSecurityCommand = new RelayCommand(GetSecurity);
         }
+
+        public MainWindowViewModel()
+        {
+            accountmanager = new Accountmanager();
+            workouts = new ObservableCollection<Workout>();
+            ForgotPassCommand = new RelayCommand(ForgotPass, null);
+            GetSecurityCommand = new RelayCommand(GetSecurity);
+            LoginCommand = new RelayCommand(ExecuteLogin, CanExecuteLogin);
+        }
+
         private void ExecuteLogin(object parameter)
         {
             if (accountmanager.ValidateLogin(Username, Password) && InputSecurity == Security)
