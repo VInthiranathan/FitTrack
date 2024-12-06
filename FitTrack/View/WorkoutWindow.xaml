@@ -120,7 +120,7 @@
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
-                ItemsSource="{Binding Workouts}"
+                ItemsSource="{Binding Workouts, UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding SelectedWorkout}">
 
                 <DataGrid.Columns>
@@ -166,6 +166,12 @@
                     Background="LightGray"
                     Command="{Binding WorkoutDetailsCommand}"
                     CommandParameter="{Binding SelectedWorkout}"
+                    />
+                <ComboBox
+                    Width="150"
+                    Margin="25,0,0,0"
+                    ItemsSource="{Binding woType, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelwoType, UpdateSourceTrigger=PropertyChanged}"
                     />
             </StackPanel>
         </StackPanel>

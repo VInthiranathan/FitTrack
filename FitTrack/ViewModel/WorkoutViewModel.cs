@@ -17,6 +17,8 @@ namespace FitTrack.ViewModel
 {
     internal class WorkoutViewModel : ViewModelBase
     {
+        public List<string> woType { get; }
+
         private readonly Accountmanager accountmanager;
 
         public string FirstName => accountmanager.CurrentUser.FirstName;
@@ -36,8 +38,27 @@ namespace FitTrack.ViewModel
         public ObservableCollection<Workout> Workouts { get; set; }
         public Workout SelectedWorkout { get; set; }
 
+        private string selwoType;
+        public string SelwoType
+        {
+            get => selwoType;
+            set
+            {
+                selwoType = value;
+                OnPropertyChanged(nameof(SelwoType));
+                LoadWorkouts(); // ladda om listan
+            }
+        }
+
         public WorkoutViewModel(Accountmanager accountmanager, ObservableCollection<Workout> workouts)
         {
+            woType = new List<string>
+            {
+                "AllWorkouts",
+                "StrengthWorkout",
+                "CardioWorkout"
+            };
+
             this.accountmanager = accountmanager;
             Workouts = workouts;
             navigationCommandManager = new NavigationCommandManager(accountmanager, Workouts);
@@ -55,28 +76,44 @@ namespace FitTrack.ViewModel
             MessageService.WorkoutAdded += OnWorkoutAdded;
         }
         private void LoadWorkouts()
-        {
-            // Hämta och lägg till träningspass för nuvarande användare
+        { 
+            // temp collection för filtrera workouts
+            IEnumerable<Workout> filteredWorkouts = Enumerable.Empty<Workout>();
+
             if (accountmanager.CurrentUser is AdminUser)
             {
-                foreach (var workout in Accountmanager.GetAllWorkouts())
-                {
-                    if (!Workouts.Contains(workout))
-                    {
-                        Workouts.Add(workout); // Lägg till det nya träningspasset i listan
-                    }
-                }
+                filteredWorkouts = Accountmanager.GetAllWorkouts();
             }
             else if (accountmanager.CurrentUser is User user)
             {
-                foreach (var workout in Accountmanager.GetUserWorkouts(user))
+                filteredWorkouts = Accountmanager.GetUserWorkouts(user);
+            }
+
+            // filtrera baserat på comboboxen
+            if (!string.IsNullOrEmpty(SelwoType))
+            {
+                if (SelwoType == "CardioWorkout")
                 {
-                    if (!Workouts.Contains(workout))
-                    {
-                        Workouts.Add(workout); // Lägg till det nya träningspasset i listan
-                    }
+                    filteredWorkouts = filteredWorkouts.OfType<CardioWorkout>();
+                }
+                else if (SelwoType == "StrengthWorkout")
+                {
+                    filteredWorkouts = filteredWorkouts.OfType<StrengthWorkout>();
+                }
+                else if (SelwoType == "AllWorkouts")
+                {
+                    filteredWorkouts = filteredWorkouts.OfType<Workout>();
                 }
             }
+
+            // Uppdaterar ObservableCollection
+            Workouts.Clear();
+            foreach (var workout in filteredWorkouts)
+            {
+                Workouts.Add(workout);
+            }
+
+
         }
         private void RemoveWorkout(object parameter)
         {
